@@ -66,9 +66,8 @@ async def get_all_root():
     except KeyError:
         return {"error": "No data available, please try again later."}
 
-
 @app.get(
-    path="/{day}",
+    path="/day/{day}",
     description="Get content for a specific day."
 )
 async def get_by_day(day: str):
@@ -92,6 +91,7 @@ async def get_by_day(day: str):
 async def get_today():
     """Endpoint to get today's content."""
     today_date = datetime.date.today().strftime("%d.%m.%Y")
+    print(today_date)
     try:
         data = calendar[today_date]
         data["date"] = today_date
